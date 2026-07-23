@@ -1,62 +1,81 @@
-@model DES___Desafio_1.Models.Empleado
+@model Empleado
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Empleado";
 }
 
-<h1>Edit</h1>
-
-<h4>Empleado</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="EmpleadoId" />
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0"><i class="bi bi-pencil me-2"></i>Editar Empleado</h4>
             </div>
-            <div class="form-group">
-                <label asp-for="FechaNacimiento" class="control-label"></label>
-                <input asp-for="FechaNacimiento" class="form-control" />
-                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="EmpleadoId" />
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Código</label>
+                        <input class="form-control" value="@Model.EmpleadoId" disabled />
+                        <small class="text-muted">El código no se puede modificar</small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Nombre" class="form-label fw-bold"></label>
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                        <small class="text-muted">Mínimo 2 caracteres, máximo 100</small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="FechaNacimiento" class="form-label fw-bold"></label>
+                        <input asp-for="FechaNacimiento" class="form-control" type="date" />
+                        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="FechaContratacion" class="form-label fw-bold"></label>
+                        <input asp-for="FechaContratacion" class="form-control" type="date" />
+                        <span asp-validation-for="FechaContratacion" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="DepartamentoId" class="form-label fw-bold"></label>
+                        <select asp-for="DepartamentoId" class="form-select" asp-items="ViewBag.DepartamentoId">
+                            <option value="">Seleccione un departamento...</option>
+                        </select>
+                        <span asp-validation-for="DepartamentoId" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Salario" class="form-label fw-bold"></label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input asp-for="Salario" class="form-control" min="0.01" step="0.01" />
+                        </div>
+                        <span asp-validation-for="Salario" class="text-danger"></span>
+                        <small class="text-muted">Debe ser mayor a cero</small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Descripcion" class="form-label fw-bold"></label>
+                        <textarea asp-for="Descripcion" class="form-control" rows="2"></textarea>
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left me-1"></i>Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="bi bi-save me-1"></i>Actualizar
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="FechaContratacion" class="control-label"></label>
-                <input asp-for="FechaContratacion" class="form-control" />
-                <span asp-validation-for="FechaContratacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Salario" class="control-label"></label>
-                <input asp-for="Salario" class="form-control" />
-                <span asp-validation-for="Salario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DepartamentoId" class="control-label"></label>
-                <input asp-for="DepartamentoId" class="form-control" />
-                <span asp-validation-for="DepartamentoId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Departamento" class="control-label"></label>
-                <input asp-for="Departamento" class="form-control" />
-                <span asp-validation-for="Departamento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

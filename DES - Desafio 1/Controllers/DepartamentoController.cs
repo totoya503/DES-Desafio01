@@ -3,22 +3,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DES___Desafio_1.Models;
 
-public class DepartamentoesController : Controller
+public class DepartamentoController : Controller
 {
     private readonly EmpleadosDbContext _context;
 
-    public DepartamentoesController(EmpleadosDbContext context)
+    public DepartamentoController(EmpleadosDbContext context)
     {
         _context = context;
     }
 
-    // GET: DEPARTAMENTOS
+
     public async Task<IActionResult> Index()    
     {
         return View(await _context.Departamentos.ToListAsync());
     }
 
-    // GET: DEPARTAMENTOS/Details/5
+
     public async Task<IActionResult> Details(int? id)
     {
         if (id == null)
@@ -36,15 +36,13 @@ public class DepartamentoesController : Controller
         return View(departamento);
     }
 
-    // GET: DEPARTAMENTOS/Create
+
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: DEPARTAMENTOS/Create
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion")] Departamento departamento)
@@ -58,7 +56,7 @@ public class DepartamentoesController : Controller
         return View(departamento);
     }
 
-    // GET: DEPARTAMENTOS/Edit/5
+
     public async Task<IActionResult> Edit(int? id)
     {
         if (id == null)
@@ -74,9 +72,7 @@ public class DepartamentoesController : Controller
         return View(departamento);
     }
 
-    // POST: DEPARTAMENTOS/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int? id, [Bind("Id,Nombre,Descripcion")] Departamento departamento)
@@ -109,7 +105,7 @@ public class DepartamentoesController : Controller
         return View(departamento);
     }
 
-    // GET: DEPARTAMENTOS/Delete/5
+
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null)
@@ -127,7 +123,7 @@ public class DepartamentoesController : Controller
         return View(departamento);
     }
 
-    // POST: DEPARTAMENTOS/Delete/5
+
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int? id)
