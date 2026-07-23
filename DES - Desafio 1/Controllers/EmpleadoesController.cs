@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DES___Desafio_1.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class EmpleadoesController : Controller
 {
@@ -43,12 +44,10 @@ public class EmpleadoesController : Controller
     // GET: EMPLEADOS/Create
     public IActionResult Create()
     {
-        return View();
+    ViewBag.DepartamentoId = new SelectList(_context.Departamentos, "Id", "Nombre");
+    return View();
     }
 
-    // POST: EMPLEADOS/Create
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("EmpleadoId,Nombre,FechaNacimiento,FechaContratacion,Salario,Descripcion,DepartamentoId,Departamento")] Empleado empleado)
@@ -75,12 +74,13 @@ public class EmpleadoesController : Controller
         {
             return NotFound();
         }
+
+        ViewBag.DepartamentoId = new SelectList(_context.Departamentos, "Id", "Nombre", empleado.DepartamentoId);
         return View(empleado);
     }
 
     // POST: EMPLEADOS/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int? empleadoid, [Bind("EmpleadoId,Nombre,FechaNacimiento,FechaContratacion,Salario,Descripcion,DepartamentoId,Departamento")] Empleado empleado)

@@ -1,72 +1,56 @@
-@model IEnumerable<DES___Desafio_1.Models.Empleado>
+@model IEnumerable<Empleado>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Empleados";
 }
 
-<h1>Index</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-person-badge me-2"></i>Gestión de Empleados</h2>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle me-1"></i>Nuevo Empleado
+    </a>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaNacimiento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaContratacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Salario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                ID Departamento
-            </th>
-
-            <th>
-                Departamento
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.FechaNacimiento)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.FechaContratacion)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Salario)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.DepartamentoId)
-            </td>
-            <td>
-                @(item.Departamento?.Nombre ?? "Sin departamento")
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EmpleadoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmpleadoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmpleadoId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead class="table-success">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Fecha Nac.</th>
+                        <th>Fecha Contrat.</th>
+                        <th>Salario</th>
+                        <th>Departamento</th>
+                        <th class="text-center" style="width: 200px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.EmpleadoId</td>
+                            <td><strong>@item.Nombre</strong></td>
+                            <td>@item.FechaNacimiento.ToShortDateString()</td>
+                            <td>@item.FechaContratacion.ToShortDateString()</td>
+                            <td>$@item.Salario.ToString("N0")</td>
+                            <td><span class="badge bg-info">@item.Departamento?.Nombre</span></td>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-empleadoid="@item.EmpleadoId" class="btn btn-sm btn-outline-primary" title="Editar">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-empleadoid="@item.EmpleadoId" class="btn btn-sm btn-outline-info" title="Detalles">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-empleadoid="@item.EmpleadoId" class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
