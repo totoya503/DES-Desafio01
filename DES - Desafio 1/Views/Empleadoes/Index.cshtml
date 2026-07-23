@@ -28,10 +28,11 @@
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DepartamentoId)
+                ID Departamento
             </th>
+
             <th>
-                @Html.DisplayNameFor(model => model.Departamento)
+                Departamento
             </th>
             <th></th>
         </tr>
@@ -58,7 +59,7 @@
                 @Html.DisplayFor(model => item.DepartamentoId)
             </td>
             <td>
-                @Html.DisplayFor(model => item.Departamento)
+                @(item.Departamento?.Nombre ?? "Sin departamento")
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EmpleadoId">Edit</a> |

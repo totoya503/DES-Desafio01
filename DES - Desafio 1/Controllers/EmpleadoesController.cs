@@ -13,9 +13,13 @@ public class EmpleadoesController : Controller
     }
 
     // GET: EMPLEADOS
-    public async Task<IActionResult> Index()    
+    public async Task<IActionResult> Index()
     {
-        return View(await _context.Empleados.ToListAsync());
+        return View(
+            await _context.Empleados
+                .Include(e => e.Departamento)
+                .ToListAsync()
+        );
     }
 
     // GET: EMPLEADOS/Details/5
@@ -146,4 +150,5 @@ public class EmpleadoesController : Controller
     {
         return _context.Empleados.Any(e => e.EmpleadoId == empleadoid);
     }
+
 }
