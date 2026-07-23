@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using DES___Desafio_1.Data;
+using DES___Desafio_1.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+// Define la carpeta base de ejecución para que |DataDirectory| apunte al directorio local del proyecto
+string basePath = AppDomain.CurrentDomain.BaseDirectory;
+AppDomain.CurrentDomain.SetData("DataDirectory", basePath);
 
 builder.Services.AddControllersWithViews();
 
