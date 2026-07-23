@@ -4,6 +4,7 @@ using DES___Desafio_1.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DES___Desafio_1.Migrations
 {
     [DbContext(typeof(EmpleadosDbContext))]
-    partial class EmpleadosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260723074553_AgregarEmpleados")]
+    partial class AgregarEmpleados
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
