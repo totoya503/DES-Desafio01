@@ -1,7 +1,7 @@
 # Visual Studio
 .vs/
 
-# Build folders
+# Build
 bin/
 obj/
 
@@ -14,3 +14,4 @@ obj/
 
 # Rider
 .idea/
+
